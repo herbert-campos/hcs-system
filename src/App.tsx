@@ -69,192 +69,185 @@ const pageStyle: CSSProperties = {
   minHeight: "100vh",
   background: BG,
   color: TEXT,
-  fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, sans-serif",
-  padding: "40px 16px 32px",
+  fontFamily:
+    "system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+  padding: "32px 16px 40px",
   display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  boxSizing: "border-box",
+  justifyContent: "center",
 };
+
+const innerStyle: CSSProperties = { width: "100%", maxWidth: 480 };
 
 const cardStyle: CSSProperties = {
-  maxWidth: 560,
-  width: "100%",
   background: CARD,
-  border: `1px solid ${GOLD}55`,
+  border: "1px solid #2b2b2b",
   borderRadius: 16,
-  padding: 24,
+  padding: 20,
   marginBottom: 16,
-  boxSizing: "border-box",
 };
 
-const goldButtonStyle: CSSProperties = {
-  display: "block",
-  width: "100%",
-  textAlign: "center",
-  background: GOLD,
-  color: "#111",
-  padding: "14px 16px",
-  borderRadius: 12,
-  fontWeight: 700,
-  textDecoration: "none",
-  marginTop: 16,
-  boxSizing: "border-box",
+const cardTitleStyle: CSSProperties = {
+  fontSize: 18,
+  margin: "0 0 8px",
+  lineHeight: 1.35,
 };
 
-const ghostButtonStyle: CSSProperties = {
-  display: "block",
-  width: "100%",
-  textAlign: "center",
-  background: "transparent",
-  color: GOLD_SOFT,
-  border: `1px solid ${GOLD}`,
-  padding: "14px 16px",
-  borderRadius: 12,
-  fontWeight: 700,
-  textDecoration: "none",
-  marginTop: 12,
-  boxSizing: "border-box",
-};
-
-const sectionTitleStyle: CSSProperties = {
-  fontSize: 22,
-  color: GOLD,
-  margin: "8px 0 4px",
-  textAlign: "center",
-};
-
-const grupoTitleStyle: CSSProperties = {
-  fontSize: 13,
-  letterSpacing: 2,
-  textTransform: "uppercase",
+const cardTextStyle: CSSProperties = {
   color: MUTED,
-  margin: "20px 0 8px",
-};
-
-const itemButtonStyle: CSSProperties = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  gap: 12,
-  width: "100%",
-  background: "#1f1f1f",
-  border: `1px solid ${GOLD}33`,
-  color: TEXT,
-  padding: "13px 14px",
-  borderRadius: 12,
-  textDecoration: "none",
-  marginBottom: 8,
-  boxSizing: "border-box",
   fontSize: 15,
-  textAlign: "left",
+  lineHeight: 1.55,
+  margin: "0 0 16px",
 };
 
-const itemLabelStyle: CSSProperties = { flex: 1 };
-const arrowStyle: CSSProperties = { color: GOLD, fontWeight: 700 };
-const footerStyle: CSSProperties = {
-  marginTop: 24,
-  color: MUTED,
-  fontSize: 13,
-  textAlign: "center",
-};
-const smallNoteStyle: CSSProperties = {
-  fontSize: 13,
-  color: MUTED,
-  marginTop: 8,
-  textAlign: "center",
-};
+function botaoBase(destaque: boolean): CSSProperties {
+  return {
+    display: "block",
+    width: "100%",
+    boxSizing: "border-box",
+    padding: "16px 18px",
+    borderRadius: 12,
+    fontSize: 16,
+    fontWeight: 700,
+    lineHeight: 1.35,
+    textAlign: "center",
+    textDecoration: "none",
+    marginBottom: 10,
+    background: destaque
+      ? `linear-gradient(135deg, ${GOLD_SOFT}, ${GOLD})`
+      : "transparent",
+    color: destaque ? "#111111" : GOLD_SOFT,
+    border: `1px solid ${GOLD}`,
+  };
+}
+
+function linkProjetoStyle(): CSSProperties {
+  return {
+    display: "block",
+    background: "#1e1e1e",
+    border: "1px solid #2a2a2a",
+    borderLeft: `3px solid ${GOLD}`,
+    borderRadius: 12,
+    padding: "14px 16px",
+    color: TEXT,
+    textDecoration: "none",
+    fontSize: 15,
+    fontWeight: 600,
+    lineHeight: 1.4,
+    marginBottom: 10,
+  };
+}
 
 export default function App() {
   return (
     <main style={pageStyle}>
-      <header style={{ textAlign: "center", marginBottom: 24 }}>
-        <h1
-          style={{
-            fontSize: 32,
-            margin: "0 0 8px",
-            letterSpacing: 2,
-            color: GOLD,
-          }}
-        >
-          HCS SYSTEM
-        </h1>
-        <p style={{ margin: 0, color: MUTED, fontSize: 15 }}>
-          Sistemas, sites e automações para o seu negócio.
-        </p>
-      </header>
+      <div style={innerStyle}>
+        <header style={{ textAlign: "center", marginBottom: 8 }}>
+          <h1
+            style={{
+              color: GOLD,
+              fontSize: 34,
+              letterSpacing: 2,
+              margin: "0 0 8px",
+            }}
+          >
+            HCS System
+          </h1>
+          <p style={{ color: MUTED, fontSize: 15, margin: 0, lineHeight: 1.5 }}>
+            Sistemas, sites e automações para o seu negócio
+          </p>
+          <h2 style={{ fontSize: 22, margin: "28px 0 20px" }}>
+            O que você precisa hoje?
+          </h2>
+        </header>
 
-      <section style={cardStyle}>
-        <h2 style={{ margin: "0 0 8px", fontSize: 20, color: GOLD_SOFT }}>
-          Salão de beleza ou barbearia?
-        </h2>
-        <p style={{ margin: 0, fontSize: 15, lineHeight: 1.5 }}>
-          Tenha um sistema de agendamento com sinal online, lembretes
-          automáticos e visual feito pro seu salão.
-        </p>
-        <a style={goldButtonStyle} href={WA_SALAO} target="_blank" rel="noreferrer">
-          Quero a prévia do meu salão
-        </a>
-        <a
-          style={ghostButtonStyle}
-          href={`${SITE}/demo/khel`}
-          target="_blank"
-          rel="noreferrer"
-        >
-          Ver uma prévia funcionando
-        </a>
-      </section>
+        <section style={cardStyle}>
+          <h3 style={cardTitleStyle}>💇 Sistema de agendamento para salões</h3>
+          <p style={cardTextStyle}>
+            Sua cliente agenda sozinha, 24h, e você recebe tudo organizado no
+            WhatsApp.
+          </p>
+          <a
+            style={botaoBase(false)}
+            href={`${SITE}/demo/khel`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ver uma prévia funcionando
+          </a>
+          <a
+            style={{ ...botaoBase(true), marginBottom: 0 }}
+            href={WA_SALAO}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Quero a prévia do meu salão
+          </a>
+        </section>
 
-      <section style={cardStyle}>
-        <h2 style={{ margin: "0 0 8px", fontSize: 20, color: GOLD_SOFT }}>
-          Outro tipo de negócio?
-        </h2>
-        <p style={{ margin: 0, fontSize: 15, lineHeight: 1.5 }}>
-          Adega, farmácia, restaurante ou outro segmento — criamos um site ou
-          sistema sob medida pra você.
-        </p>
-        <a style={goldButtonStyle} href={WA_ORCAMENTO} target="_blank" rel="noreferrer">
-          Quero um orçamento
-        </a>
-        <p style={smallNoteStyle}>Resposta rápida no WhatsApp.</p>
-      </section>
+        <section style={cardStyle}>
+          <h3 style={cardTitleStyle}>🏪 Site ou sistema pro seu comércio</h3>
+          <p style={cardTextStyle}>
+            Adegas, restaurantes, pet shops, farmácias e mais: pedidos e delivery
+            sem pagar taxa por pedido.
+          </p>
+          <a
+            style={{ ...botaoBase(true), marginBottom: 0 }}
+            href={WA_ORCAMENTO}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Solicitar orçamento no WhatsApp
+          </a>
+        </section>
 
-      <section
-        style={{ maxWidth: 560, width: "100%", boxSizing: "border-box" }}
-      >
-        <h2 style={sectionTitleStyle}>Sistemas prontos</h2>
-        <p
+        <section>
+          <h2
+            style={{
+              color: GOLD,
+              fontSize: 19,
+              margin: "28px 0 16px",
+              lineHeight: 1.4,
+            }}
+          >
+            👀 Sistemas prontos — toque pra ver funcionando
+          </h2>
+
+          {GRUPOS.map((grupo) => (
+            <div key={grupo.titulo}>
+              <h3
+                style={{
+                  color: GOLD,
+                  fontSize: 12,
+                  textTransform: "uppercase",
+                  letterSpacing: 2,
+                  margin: "20px 0 10px",
+                }}
+              >
+                {grupo.titulo}
+              </h3>
+              {grupo.itens.map((item) => (
+                <a key={item.rotulo} style={linkProjetoStyle()} href={item.href}>
+                  {item.rotulo}
+                </a>
+              ))}
+            </div>
+          ))}
+        </section>
+
+        <footer
           style={{
             textAlign: "center",
             color: MUTED,
-            fontSize: 14,
-            margin: "0 0 8px",
+            fontSize: 13,
+            lineHeight: 1.5,
+            margin: "32px 0 8px",
+            paddingTop: 20,
+            borderTop: "1px solid #2b2b2b",
           }}
         >
-          Toque para abrir e conhecer cada sistema.
-        </p>
-        {GRUPOS.map((grupo) => (
-          <div key={grupo.titulo}>
-            <h3 style={grupoTitleStyle}>{grupo.titulo}</h3>
-            {grupo.itens.map((item) => (
-              <a
-                key={item.href}
-                style={itemButtonStyle}
-                href={item.href}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span style={itemLabelStyle}>{item.rotulo}</span>
-                <span style={arrowStyle}>→</span>
-              </a>
-            ))}
-          </div>
-        ))}
-      </section>
-
-      <footer style={footerStyle}>
-        HCS System · Feito para o seu negócio crescer.
-      </footer>
+          HCS System — sistemas que trabalham por você.
+        </footer>
+      </div>
     </main>
   );
 }
